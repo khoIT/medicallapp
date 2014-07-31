@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+Medicine.create([
+  {drug_name: 'Rivaroxaban', brand:'Xarelto',
+   fda_1:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   fda_2:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   fda_3:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   fda_4:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   fda_5:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   edu_1:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   edu_2:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   edu_3:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   edu_4:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery',
+   edu_5:'Postoperative thrombophylaxis of deep vein thrombosis (DVT) which may lead to pulmonary embolism in patients undergoing knee or hip replacement surgery'}
+])
