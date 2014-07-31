@@ -5,7 +5,9 @@ gem 'protected_attributes'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg'
+#gem 'taps'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -46,5 +48,7 @@ end
 # gem 'debugger', group: [:development, :test]
 #
 #
-gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'ratchet-rails', '~> 0.0.3'
+gem 'ratchet-sass', '~> 2.0.2'
+gem 'bootstrap-sass', '~> 3.2.0'

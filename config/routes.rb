@@ -4,6 +4,7 @@ Medicallapp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root to: 'physician#index'
+  get 'medicine_list' => 'medicine#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
