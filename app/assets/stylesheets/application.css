@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require ratchet
+ *= require ratchet.min
  *= require bootstrap
  *= require bootstrap.min
  *= require_tree .
