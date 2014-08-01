@@ -1,0 +1,11 @@
+<div class="segmented-control">
+  <a class="control-item active" href="#item1mobile">
+    <%= @drug.drug_name %>
+  </a>
+  <a class="control-item" href="#item2mobile">
+    <%= @drug.brand %>
+  </a>
+</div>
+<div class="card">
+  <span id="item1mobile" class="control-content active"><%= @drug.inidication.first.content %></span>
+</div>

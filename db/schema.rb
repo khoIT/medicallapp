@@ -11,27 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731015229) do
+ActiveRecord::Schema.define(version: 20140801075926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "educations", force: true do |t|
+    t.integer  "medicine_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "content"
+  end
+
+  create_table "indications", force: true do |t|
+    t.integer  "medicine_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "content"
+  end
+
   create_table "medicines", force: true do |t|
     t.string   "drug_name"
     t.string   "brand"
-    t.string   "fda_1"
-    t.string   "fda_2"
-    t.string   "fda_3"
-    t.string   "fda_4"
-    t.string   "fda_5"
-    t.string   "edu_1"
-    t.string   "edu_2"
-    t.string   "edu_3"
-    t.string   "edu_4"
-    t.string   "edu_5"
-    t.string   "edu_final_1"
-    t.string   "edu_final_2"
-    t.string   "edu_final_3"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,22 +42,10 @@ ActiveRecord::Schema.define(version: 20140731015229) do
     t.datetime "updated_at"
   end
 
-  create_table "questions", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "surveys", force: true do |t|
     t.string   "edu_final_1"
     t.string   "edu_final_2"
     t.string   "edu_final_3"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

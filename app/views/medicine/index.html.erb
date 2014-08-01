@@ -20,3 +20,13 @@
     <span class="tab-label">Settings</span>
   </a>
 </nav>
+
+<ul class="table-view">
+  <% for m in Medicine.all %>
+  <li class="table-view-cell">
+    <a class="navigate-right" href=<%="/medicine/#{m.id}"%>>
+      Drug <%= m.id%>
+    </a>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,19 @@
+<div class="segmented-control">
+  <div class="control-item active" href="#item1mobile">
+    <%= @drug.drug_name %>
+  </div>
+  <div class="control-item" href="#item2mobile">
+    <%= @drug.brand %>
+  </div>
+</div>
+<ul class="table-view">
+  <% for item in @indication %>
+  <li class="table-view-cell media">
+    <img class="media-object pull-left" src="http://placehold.it/42x42">
+    <div class="media-body">
+       <%= item.content %>
+    </div>
+  </li>
+  <% end %>
+</ul>
+
