@@ -1,19 +1,22 @@
-<div class="segmented-control">
-  <div class="control-item active" href="#item1mobile">
-    <%= @drug.drug_name %>
-  </div>
-  <div class="control-item" href="#item2mobile">
-    <%= @drug.brand %>
-  </div>
-</div>
-<ul class="table-view">
-  <% for item in @indication %>
-  <li class="table-view-cell media">
-    <img class="media-object pull-left" src="http://placehold.it/42x42">
-    <div class="media-body">
-       <%= item.content %>
-    </div>
-  </li>
-  <% end %>
-</ul>
+<header class="bar bar-nav">
+  <button class="btn btn-link btn-nav pull-left" href="medicine_list">
+    <span class="icon icon-left-nav"></span>
+    <%= link_to "Back", :controller => "medicine", :action => "index" %>
+  </button>
+  <h1 class="title"><%= @drug.drug_name %></h1>
+</header>
 
+<div class="content">
+    <button class="btn btn-block"><%= @drug.brand %></button>
+    <ul class="table-view">
+      <% for item in @indication %>
+      <li class="table-view-cell media">
+        <img class="media-object pull-left" src="http://placehold.it/42x42">
+        <div class="media-body">
+           <%= item.content %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+
+  </div>
