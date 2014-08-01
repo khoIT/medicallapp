@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require ratchet
 //= require bootstrap
+//= require bootstrap.min
 //= require_tree .
