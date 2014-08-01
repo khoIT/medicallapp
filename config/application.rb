@@ -20,7 +20,7 @@ module Medicallapp
     # config.i18n.default_locale = :de
     # Add the fonts path
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
-
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
     # Precompile additional assets
     config.serve_static_assets = true
   end
