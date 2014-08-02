@@ -21,7 +21,7 @@ class Medicine < ActiveRecord::Base
     end
   end
 
-  # long way
+  # alternative to read different files
 # def self.import(file)
 #   spreadsheet = open_spreadsheet(file)
 #   debugger

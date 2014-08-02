@@ -1,8 +1,8 @@
 class MedicineController < ApplicationController
-  def index
+  def drug_list
   end
 
-  def show_indication
+  def drug_indication
     @drug = Medicine.find(params[:id])
     @indication = @drug.indication.all
   end
@@ -13,5 +13,8 @@ class MedicineController < ApplicationController
   def import
       Medicine.import(params[:file])
       redirect_to show_import_url, notice: "File imported"
+  end
+
+  def drug_education
   end
 end
