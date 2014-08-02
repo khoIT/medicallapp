@@ -53,6 +53,8 @@ gem 'ratchet-rails', '~> 0.0.3'
 gem 'ratchet-sass', '~> 2.0.2'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'debugger'
+gem 'roo'
+gem 'iconv', '~> 1.0.4'
 group :production do
   gem 'rails_12factor'
 end

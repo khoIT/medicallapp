@@ -7,8 +7,11 @@ Medicallapp::Application.routes.draw do
   get 'home' => 'physician#index'
   get 'medicine' => 'medicine#index'
   get 'medicine/:id' => 'medicine#show_indication'
-  #resources :medicine
-
+  get 'show_import' => 'medicine#show_import'
+  get 'import' => 'medicine#import'
+   resources :medicine do
+     collection { post :import }
+   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
