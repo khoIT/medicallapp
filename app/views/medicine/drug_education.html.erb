@@ -1,1 +1,35 @@
-This is Educaton list page
+<header class="bar bar-nav">
+  <button class="btn btn-link btn-nav pull-left" href="medicine">
+    <span class="icon icon-left-nav"></span>
+    <a href="/medicine">Back</a>
+  </button>
+  <h1 class="title"><%= @drug.drug_name %></h1>
+</header>
+
+<div class="content">
+    <button class="btn btn-block"><%= @drug.brand %></button>
+    <ul class="table-view">
+      <% for item in @education %>
+      <li class="table-view-cell media">
+        <img class="media-object pull-left" src="http://placehold.it/42x42">
+        <div class="media-body">
+           <%= item.content %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<nav class="bar bar-tab">
+  <a class="tab-item active" href="/home">
+    <span class="glyphicon glyphicon-home"></span>
+    <span class="tab-label">Home</span>
+  </a>
+  <a class="tab-item" href="/medicine">
+    <span class="glyphicon glyphicon-tint"></span>
+    <span class="tab-label">Medicine</span>
+  </a>
+  <a class="tab-item" href="#">
+    <span class="icon icon-search"></span>
+    <span class="tab-label">Search</span>
+  </a>
+</nav>
