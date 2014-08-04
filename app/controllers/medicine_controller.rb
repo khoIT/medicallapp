@@ -13,14 +13,8 @@ class MedicineController < ApplicationController
   end
 
   def import
-<<<<<<< HEAD
-      Medicine.import(params[:file])
-      redirect_to show_import_url, notice: "File imported"
-      # binding.pry
-=======
     Medicine.import(params[:file])
     redirect_to medicine_url, notice: "File imported"
->>>>>>> master
   end
 
   def drug_education
