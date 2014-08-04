@@ -25,5 +25,6 @@ module Medicallapp
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
     # Precompile additional assets
     config.serve_static_assets = true
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

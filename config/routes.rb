@@ -6,13 +6,15 @@ Medicallapp::Application.routes.draw do
   root to: 'physician#index'
   get 'home' => 'physician#index'
   get 'medicine' => 'medicine#drug_list'
-  get 'medicine/:id' => 'medicine#drug_indication'
-  get 'medicine/:id/education' => 'medicine#drug_education'
+  get 'medicine/:id' => 'medicine#drug_indication', as: 'show_indication'
+  post 'medicine/:id/education' => 'medicine#drug_education', as: 'show_education'
   get 'show_import' => 'medicine#show_import'
   get 'import' => 'medicine#import'
    resources :medicine do
      collection { post :import }
+     #post 'choose_indication' => 'medicine#choose_indication'
    end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
