@@ -3,11 +3,12 @@
     <span class="icon icon-left-nav"></span>
     <%= link_to "Back", :controller => "physician", :action => "index" %>
   </button>
-          <% if notice %>
-                      <script language="JavaScript">
+
+           <% if notice %>
+       <script language="JavaScript">
          alert("<%= notice %>");
         </script>
-          <% end %>
+      <% end %>
   <h1 class="title">Title</h1>
 </header>
 <div class="content">
@@ -28,8 +29,8 @@
     <span class="tab-label">Home</span>
   </a>
   <a class="tab-item" href="medicine">
-    <span class="glyphicon glyphicon-tint"></span>
-    <span class="tab-label">Medicine</span>
+    <span class="glyphicon glyphicon-list"></span>
+    <span class="tab-label">Medicine List</span>
   </a>
   <a class="tab-item" href="#">
     <span class="icon icon-search"></span>

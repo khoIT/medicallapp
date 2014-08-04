@@ -7,7 +7,11 @@ Medicallapp::Application.routes.draw do
   get 'home' => 'physician#index'
   get 'medicine' => 'medicine#drug_list'
   get 'medicine/:id' => 'medicine#drug_indication', as: 'show_indication'
-  post 'medicine/:id/education' => 'medicine#drug_education', as: 'show_education'
+  get 'medicine/:id/education' => 'medicine#drug_education', as: 'show_education'
+  post 'indication/:id' => 'indication#choose_indication'
+  post 'medicine/:id/final_indication' => 'medicine#drug_final_indication', as: 'show_final_indication'
+
+
   get 'show_import' => 'medicine#show_import'
   get 'import' => 'medicine#import'
    resources :medicine do

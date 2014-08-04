@@ -1,7 +1,7 @@
 <header class="bar bar-nav">
   <button class="btn btn-link btn-nav pull-left" href="medicine">
     <span class="icon icon-left-nav"></span>
-    <a href="/medicine">Back</a>
+    <a href="/medicine/<%=@drug.id %>">Back</a>
   </button>
   <h1 class="title"><%= @drug.drug_name %></h1>
 </header>
@@ -25,8 +25,8 @@
     <span class="tab-label">Home</span>
   </a>
   <a class="tab-item" href="/medicine">
-    <span class="glyphicon glyphicon-tint"></span>
-    <span class="tab-label">Medicine</span>
+    <span class="glyphicon glyphicon-list"></span>
+    <span class="tab-label">Medicine List</span>
   </a>
   <a class="tab-item" href="#">
     <span class="icon icon-search"></span>

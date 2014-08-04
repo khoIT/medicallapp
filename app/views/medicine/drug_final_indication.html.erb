@@ -1,6 +1,6 @@
 <html>
 <header class="bar bar-nav">
-  <button class="btn btn-link btn-nav pull-left">
+  <button class="btn btn-link btn-nav pull-left" href="medicine">
     <span class="icon icon-left-nav"></span>
     <a href="/medicine">Back</a>
   </button>
@@ -14,17 +14,13 @@
 <div class="content">
     <button class="btn btn-block"><%= @drug.brand %></button>
     <ul class="table-view">
-      <form action="/indication/<%=@drug.id %>" method="post">
-      <% for item in @indication %>
+      <% for item in @final_indication %>
           <li class="table-view-cell media">
             <img class="media-object pull-left" src="http://placehold.it/42x42">
             <div class="media-body">
                <%= item.content%>
-              <%= check_box_tag(item.id,item.id) %>
             </div> </li>
       <% end %>
-        <input id="submit" type="submit" value="Submit">
-      </form>
     </ul>
   </div>
 <nav class="bar bar-tab">
@@ -42,3 +38,4 @@
   </a>
 </nav>
 </html>
+

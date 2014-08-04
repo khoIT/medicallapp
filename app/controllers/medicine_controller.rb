@@ -4,9 +4,16 @@ class MedicineController < ApplicationController
 
   def drug_indication
     @drug = Medicine.find(params[:id])
-    @drug.final_indication.count != 0 ?
-      @indication = @drug.final_indication.all: @indication = @drug.indication.all
+    if @drug.final_indication.count != 0
+      @final_indication = @drug.final_indication.all
+      render 'drug_final_indication'
+    else
+      @indication = @drug.indication.all
+    end
 
+  end
+
+  def drug_final_indication
   end
 
   def show_import
