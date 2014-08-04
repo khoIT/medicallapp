@@ -3,6 +3,11 @@
     <span class="icon icon-left-nav"></span>
     <%= link_to "Back", :controller => "physician", :action => "index" %>
   </button>
+          <% if notice %>
+                      <script language="JavaScript">
+         alert("<%= notice %>");
+        </script>
+          <% end %>
   <h1 class="title">Title</h1>
 </header>
 <div class="content">
