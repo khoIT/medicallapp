@@ -1,0 +1,9 @@
+<h2>Import Products</h2>
+
+<%= form_tag import_medicine_index_path, multipart: true, action:'post' do %>
+    <%= file_field_tag 'file' %>
+      <%= submit_tag "Import" %>
+    <% end %>
+
+
+

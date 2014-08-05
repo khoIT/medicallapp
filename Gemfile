@@ -45,18 +45,20 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
-#
-#
-gem 'autoprefixer-rails'
-gem 'ratchet-rails', '~> 0.0.3'
-gem 'ratchet-sass', '~> 2.0.2'
-gem 'bootstrap-sass', '~> 3.2.0'
-# gem 'debugger'
-gem 'roo'
-gem 'pry'
-gem 'iconv', '~> 1.0.4'
+group :development, :test do
+    gem 'rspec-rails', '~> 3.0.0'
+    gem 'debugger'
+end
 group :production do
   gem 'rails_12factor'
 end
 
+
+gem 'autoprefixer-rails'
+gem 'ratchet-rails', '~> 0.0.3'
+gem 'ratchet-sass', '~> 2.0.2'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'roo'
+gem 'pry'
+gem 'iconv', '~> 1.0.4'
+gem 'simplecov', '~> 0.9.0', :require => false, :group => :test
