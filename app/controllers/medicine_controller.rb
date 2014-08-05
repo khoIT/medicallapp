@@ -20,14 +20,19 @@ class MedicineController < ApplicationController
   end
 
   def import
+    unless params[:file]
+      redirect_to show_import_url
+      return
+    end
     Medicine.import(params[:file])
     redirect_to medicine_url, notice: "File imported"
   end
 
   def drug_education
-    FinalIndication.import(params)
+    FinalIndication.choose(params)
     @drug = Medicine.find(params[:id])
     @education = @drug.education.all
+    @other_education = @drug.other_education.all
   end
 
 end

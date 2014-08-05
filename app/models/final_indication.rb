@@ -2,7 +2,7 @@ class FinalIndication < ActiveRecord::Base
   attr_accessible :medicine_id, :content
   belongs_to :medicine
 
-  def self.import(params)
+  def self.choose(params)
     for item in params
       if item.first.is_number?
         indication = Indication.find_by_id(item.first)
