@@ -5,6 +5,7 @@ class Medicine < ActiveRecord::Base
   has_many :education
   has_many :indication
   has_many :final_indication
+  has_many :other_education
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
@@ -26,6 +27,12 @@ class Medicine < ActiveRecord::Base
           education.update_attributes(content:edu[1])
           education.update_attributes(medicine_id:medicine.id)
         end
+      end
+      other_edu = row.to_hash.slice("other_edu")
+      if other_edu.first[1].present?
+        other = OtherEducation.new
+        other.update_attributes(content:other_edu.first[1])
+        other.update_attributes(medicine_id:medicine.id)
       end
     end
   end

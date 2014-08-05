@@ -8,8 +8,20 @@
 
 <div class="content">
     <button class="btn btn-block"><%= @drug.brand %></button>
+    <h5 align="middle" > Education points </h1>
     <ul class="table-view">
       <% for item in @education %>
+      <li class="table-view-cell media">
+        <img class="media-object pull-left" src="http://placehold.it/42x42">
+        <div class="media-body">
+           <%= item.content %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+    <h5 align="middle"> Other education points </h1>
+    <ul class="table-view">
+      <% for item in @other_education %>
       <li class="table-view-cell media">
         <img class="media-object pull-left" src="http://placehold.it/42x42">
         <div class="media-body">

@@ -12,8 +12,8 @@ Medicallapp::Application.routes.draw do
   post 'medicine/:id/final_indication' => 'medicine#drug_final_indication', as: 'show_final_indication'
 
 
-  get 'show_import' => 'medicine#show_import'
-  get 'import' => 'medicine#import'
+  get 'show_import' => 'physician#show_import'
+  post 'import' => 'medicine#import'
    resources :medicine do
      collection { post :import }
      #post 'choose_indication' => 'medicine#choose_indication'
