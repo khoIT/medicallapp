@@ -62,3 +62,4 @@ gem 'roo'
 gem 'pry'
 gem 'iconv', '~> 1.0.4'
 gem 'simplecov', '~> 0.9.0', :require => false, :group => :test
+gem "factory_girl_rails", "~> 4.0"

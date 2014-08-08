@@ -5,11 +5,14 @@ Medicallapp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: 'physician#index'
   get 'home' => 'physician#index'
-  get 'medicine' => 'medicine#drug_list'
-  get 'medicine/:id' => 'medicine#drug_indication', as: 'show_indication'
-  get 'medicine/:id/education' => 'medicine#drug_education', as: 'show_education'
+  get 'medicine' => 'medicine#drug_list', as: 'drug_list'
+  get 'medicine/:id' => 'medicine#drug_indication'
+  get 'medicine/:id/education' => 'medicine#drug_education'
   post 'indication/:id' => 'indication#choose_indication'
   post 'medicine/:id/final_indication' => 'medicine#drug_final_indication', as: 'show_final_indication'
+  post 'session/new' => 'session#new', as: 'new_session'
+  get 'session/:id' => 'session#show', as: 'show_session'
+
 
 
   get 'show_import' => 'physician#show_import'

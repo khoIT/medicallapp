@@ -3,14 +3,22 @@ class MedicineController < ApplicationController
   end
 
   def drug_indication
-    @drug = Medicine.find(params[:id])
-    if @drug.final_indication.count != 0
-      @final_indication = @drug.final_indication.all
-      render 'drug_final_indication'
-    else
-      @indication = @drug.indication.all
+    @session = Session.find_by_id(params[:session])
+    @drug = Medicine.find_by_id(params[:id])
+    @indication = @drug.indication.all
+  end
+
+  def drug_education
+    FinalIndication.choose(params)
+    @session = Session.find_by_id(params[:session])
+    @drug = Medicine.find_by_id(params[:id])
+    @next_drug = @session.next_drug(@drug)
+    if @next_drug.nil?
+      redirect_to drug_list_path
     end
 
+    @education = @drug.education.all
+    @other_education = @drug.other_education.all
   end
 
   def drug_final_indication
@@ -28,11 +36,16 @@ class MedicineController < ApplicationController
     redirect_to medicine_url, notice: "File imported"
   end
 
-  def drug_education
-    FinalIndication.choose(params)
-    @drug = Medicine.find(params[:id])
-    @education = @drug.education.all
-    @other_education = @drug.other_education.all
-  end
+  #only use for P&T users
+# def show_final_indication
+#   @drug = Medicine.find(params[:id])
+#   if @drug.final_indication.count != 0
+#     @final_indication = @drug.final_indication.all
+#     render 'drug_final_indication'
+#   else
+#     @indication = @drug.indication.all
+#   end
+# end
+
 
 end

@@ -13,13 +13,15 @@
 </header>
 <div class="content">
 <ul class="table-view">
-  <% for m in Medicine.all %>
-  <li class="table-view-cell">
-    <a class="navigate-right" href=<%="/medicine/#{m.id}"%>>
-      Drug <%= m.id%>
-    </a>
-    </li>
-  <% end %>
+  <form action="/session/new" method="post">
+    <input id="submit" type="submit" value="Submit">
+    <% for m in Medicine.all %>
+    <li class="table-view-cell">
+        Drug <%= m.id%> </a>
+      <%= check_box_tag(m.id,m.id) %>
+      </li>
+    <% end %>
+  </form>
 </ul>
 </div>
 

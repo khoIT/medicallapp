@@ -1,0 +1,44 @@
+<html>
+<header class="bar bar-nav">
+  <button class="btn btn-link btn-nav pull-left">
+    <span class="icon icon-left-nav"></span>
+    <a href="/medicine">Back</a>
+  </button>
+  <button class="btn btn-link btn-nav pull-right">
+    <a href="/medicine/<%=@drug.id%>/education">Education</a>
+    <span class="icon icon-right-nav"></span>
+  </button>
+  <h1 class="title"><%= @drug.drug_name %></h1>
+</header>
+
+<div class="content">
+    <button class="btn btn-block"><%= @drug.brand %></button>
+    <ul class="table-view">
+      <form action="/indication/<%=@drug.id %>" method="post">
+      <% for item in @indication %>
+          <li class="table-view-cell media">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+               <%= item.content%>
+              <%= check_box_tag(item.id,item.id) %>
+            </div> </li>
+      <% end %>
+        <input id="submit" type="submit" value="Submit">
+      </form>
+    </ul>
+  </div>
+<nav class="bar bar-tab">
+  <a class="tab-item active" href="/home">
+    <span class="glyphicon glyphicon-home"></span>
+    <span class="tab-label">Home</span>
+  </a>
+  <a class="tab-item" href="/medicine">
+    <span class="glyphicon glyphicon-list"></span>
+    <span class="tab-label">Medicine List</span>
+  </a>
+  <a class="tab-item" href="#">
+    <span class="icon icon-search"></span>
+    <span class="tab-label">Search</span>
+  </a>
+</nav>
+</html>
