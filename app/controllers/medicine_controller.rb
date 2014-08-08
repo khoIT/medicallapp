@@ -14,7 +14,7 @@ class MedicineController < ApplicationController
     @drug = Medicine.find_by_id(params[:id])
     @next_drug = @session.next_drug(@drug)
     if @next_drug.nil?
-      redirect_to drug_list_path
+      redirect_to drug_list_path, notice: "Session completed!"
     end
 
     @education = @drug.education.all
