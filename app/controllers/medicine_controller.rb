@@ -33,7 +33,7 @@ class MedicineController < ApplicationController
       return
     end
     Medicine.import(params[:file])
-    redirect_to medicine_url, notice: "File imported"
+    redirect_to drug_list_path, notice: "File imported"
   end
 
   #only use for P&T users
