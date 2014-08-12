@@ -20,4 +20,13 @@ RSpec.describe Session, :type => :model do
     session.medicines << [medicine1, medicine2, medicine3]
     expect(session.next_drug(medicine1)).to eq(medicine2)
   end
+
+  it 'should return previous drug in the same session' do
+    medicine1 = FactoryGirl.create(:medicine)
+    medicine2 = FactoryGirl.create(:medicine)
+    medicine3 = FactoryGirl.create(:medicine)
+    session = FactoryGirl.create(:session)
+    session.medicines << [medicine1, medicine2, medicine3]
+    expect(session.first_element?(medicine1)).to eq(true)
+  end
 end

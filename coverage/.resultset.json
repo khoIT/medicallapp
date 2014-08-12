@@ -1,6 +1,27 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/PKer/code/medicallapp/app/models/model.rb": [
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/PKer/code/medicallapp/app/models/user.rb": [
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
       "/Users/PKer/code/medicallapp/app/helpers/application_helper.rb": [
         1,
         null
@@ -24,9 +45,22 @@
       "/Users/PKer/code/medicallapp/app/models/session.rb": [
         1,
         1,
+        1,
         null,
         1,
         1,
+        null,
+        1,
+        3,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
         1,
         3,
         null,
@@ -101,6 +135,6 @@
         null
       ]
     },
-    "timestamp": 1407473058
+    "timestamp": 1407882332
   }
 }

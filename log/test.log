@@ -1,0 +1,993 @@
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateSurveys (20140809002523)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (31.2ms)[0m  [1mCREATE TABLE "surveys" ("id" serial primary key, "title" character varying(255), "description" text, "access_code" character varying(255), "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "active_at" timestamp, "inactive_at" timestamp, "css_url" character varying(255), "custom_class" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002523"]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSurveySections (20140809002524)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (13.4ms)[0m  [1mCREATE TABLE "survey_sections" ("id" serial primary key, "survey_id" integer, "title" character varying(255), "description" text, "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_order" integer, "custom_class" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002524"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateQuestions (20140809002525)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (8.8ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "survey_section_id" integer, "question_group_id" integer, "text" text, "short_text" text, "help_text" text, "pick" character varying(255), "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_order" integer, "display_type" character varying(255), "is_mandatory" boolean, "display_width" integer, "custom_class" character varying(255), "custom_renderer" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002525"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateQuestionGroups (20140809002526)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (5.2ms)[0m  [1mCREATE TABLE "question_groups" ("id" serial primary key, "text" text, "help_text" text, "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_type" character varying(255), "custom_class" character varying(255), "custom_renderer" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002526"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAnswers (20140809002527)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (6.9ms)[0m  [1mCREATE TABLE "answers" ("id" serial primary key, "question_id" integer, "text" text, "short_text" text, "help_text" text, "weight" integer, "response_class" character varying(255), "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_order" integer, "is_exclusive" boolean, "hide_label" boolean, "display_length" integer, "custom_class" character varying(255), "custom_renderer" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002527"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateResponseSets (20140809002528)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (5.0ms)[0m  [1mCREATE TABLE "response_sets" ("id" serial primary key, "user_id" integer, "survey_id" integer, "access_code" character varying(255), "started_at" timestamp, "completed_at" timestamp, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002528"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateResponses (20140809002529)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.8ms)[0m  [1mCREATE TABLE "responses" ("id" serial primary key, "response_set_id" integer, "question_id" integer, "answer_id" integer, "datetime_value" timestamp, "integer_value" integer, "float_value" float, "unit" character varying(255), "text_value" text, "string_value" character varying(255), "response_other" character varying(255), "response_group" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002529"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDependencies (20140809002530)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (6.3ms)[0m  [1mCREATE TABLE "dependencies" ("id" serial primary key, "question_id" integer, "question_group_id" integer, "rule" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002530"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDependencyConditions (20140809002531)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.5ms)[0m  [1mCREATE TABLE "dependency_conditions" ("id" serial primary key, "dependency_id" integer, "rule_key" character varying(255), "question_id" integer, "operator" character varying(255), "answer_id" integer, "datetime_value" timestamp, "integer_value" integer, "float_value" float, "unit" character varying(255), "text_value" text, "string_value" character varying(255), "response_other" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002531"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateValidations (20140809002532)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (6.1ms)[0m  [1mCREATE TABLE "validations" ("id" serial primary key, "answer_id" integer, "rule" character varying(255), "message" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002532"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateValidationConditions (20140809002533)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (7.8ms)[0m  [1mCREATE TABLE "validation_conditions" ("id" serial primary key, "validation_id" integer, "rule_key" character varying(255), "operator" character varying(255), "question_id" integer, "answer_id" integer, "datetime_value" timestamp, "integer_value" integer, "float_value" float, "unit" character varying(255), "text_value" text, "string_value" character varying(255), "response_other" character varying(255), "regexp" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002533"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddDisplayOrderToSurveys (20140809002534)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "surveys" ADD COLUMN "display_order" integer[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002534"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddCorrectAnswerIdToQuestions (20140809002535)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "questions" ADD COLUMN "correct_answer_id" integer[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002535"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddIndexToResponseSets (20140809002536)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mCREATE INDEX "response_sets_ac_idx" ON "response_sets" ("access_code")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002536"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddIndexToSurveys (20140809002537)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mCREATE INDEX "surveys_ac_idx" ON "surveys" ("access_code")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002537"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddUniqueIndicies (20140809002538)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.5ms)[0m  [1mDROP INDEX "response_sets_ac_idx"[0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "response_sets_ac_idx" ON "response_sets" ("access_code")
+  [1m[36m (0.3ms)[0m  [1mDROP INDEX "surveys_ac_idx"[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "surveys_ac_idx" ON "surveys" ("access_code")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002538"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Migrating to AddSectionIdToResponses (20140809002539)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "responses" ADD COLUMN "survey_section_id" integer
+  [1m[36m (0.9ms)[0m  [1mCREATE INDEX "index_responses_on_survey_section_id" ON "responses" ("survey_section_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002539"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddDefaultValueToAnswers (20140809002540)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "default_value" character varying(255)[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002540"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddApiIds (20140809002541)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "surveys" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "questions" ADD COLUMN "api_id" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002541"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddDisplayTypeToAnswers (20140809002542)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "display_type" character varying(255)[0m
+  [1m[35mAnswer Load (0.7ms)[0m  SELECT "answers".* FROM "answers"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "answers" DROP "hide_label"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002542"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddApiIdToQuestionGroups (20140809002543)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "question_groups" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002543"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddApiIdsToResponseSetsAndResponses (20140809002544)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (8.9ms)[0m  [1mALTER TABLE "response_sets" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "responses" ADD COLUMN "api_id" character varying(255)
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002544"]]
+  [1m[35m (2.7ms)[0m  COMMIT
+Migrating to UpdateBlankApiIdsOnQuestionGroup (20140809002545)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSurvey Load (1.2ms)[0m  SELECT "surveys".* FROM "surveys" WHERE (api_id IS NULL)
+  [1m[36mQuestion Load (1.1ms)[0m  [1mSELECT "questions".* FROM "questions" WHERE (api_id IS NULL)[0m
+  [1m[35mQuestionGroup Load (0.9ms)[0m  SELECT "question_groups".* FROM "question_groups" WHERE (api_id IS NULL)
+  [1m[36mAnswer Load (0.7ms)[0m  [1mSELECT "answers".* FROM "answers" WHERE (api_id IS NULL)[0m
+  [1m[35mResponse Load (1.1ms)[0m  SELECT "responses".* FROM "responses" WHERE (api_id IS NULL)
+  [1m[36mResponseSet Load (1.0ms)[0m  [1mSELECT "response_sets".* FROM "response_sets" WHERE (api_id IS NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002545"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to DropUniqueIndexOnAccessCodeInSurveys (20140809002546)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mDROP INDEX "surveys_ac_idx"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002546"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddVersionToSurveys (20140809002547)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (6.4ms)[0m  [1mALTER TABLE "surveys" ADD COLUMN "survey_version" integer DEFAULT 0[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002547"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddUniqueIndexOnAccessCodeAndVersionInSurveys (20140809002548)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "surveys_access_code_version_idx" ON "surveys" ("access_code", "survey_version")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002548"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to UpdateBlankVersionsOnSurveys (20140809002549)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSurvey Load (0.6ms)[0m  [1mSELECT "surveys".* FROM "surveys" WHERE (survey_version IS NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002549"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to ApiIdsMustBeUnique (20140809002550)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "uq_surveys_api_id" ON "surveys" ("api_id")[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "uq_questions_api_id" ON "questions" ("api_id")
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "uq_question_groups_api_id" ON "question_groups" ("api_id")[0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "uq_answers_api_id" ON "answers" ("api_id")
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "uq_responses_api_id" ON "responses" ("api_id")[0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "uq_response_sets_api_id" ON "response_sets" ("api_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002550"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Migrating to CreateSurveyTranslations (20140809002551)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (6.6ms)[0m  CREATE TABLE "survey_translations" ("id" serial primary key, "survey_id" integer, "locale" character varying(255), "translation" text, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002551"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Migrating to AddInputMaskAttributesToAnswer (20140809002552)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "answers" ADD COLUMN "input_mask" character varying(255)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "input_mask_placeholder" character varying(255)[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002552"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateUsers (20140811061655)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (4.9ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "activation_code" character varying(255), "user_department" character varying(255), "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140811061655"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddTimeToSession (20140812041646)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "sessions" ADD COLUMN "start_time" timestamp[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "sessions" ADD COLUMN "stop_time" timestamp
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140812041646"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Migrating to AddColumnStartAndStopTimeToMedicinesSessions (20140812215919)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140812215919"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.4ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.7ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (29, 69) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (29, 70) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (29, 71) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.3ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 29]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (30, 72) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (30, 73) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (30, 74) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.9ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 30]]
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 73 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:10:26 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (31, 75) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (31, 76) RETURNING "id"
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (31, 77) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 31]]
+  [1m[35mMedicine Load (0.4ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 77 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (32, 78) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (32, 79) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (32, 80) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.1ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 32]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (33, 81) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (33, 82) RETURNING "id"[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (33, 83) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 33]]
+  [1m[36mMedicine Load (0.6ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 82 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:10:48 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (34, 84) RETURNING "id"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (34, 85) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (34, 86) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 34]]
+  [1m[35mMedicine Load (0.3ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 84 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (6.0ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[35m (0.3ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (35, 87) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (35, 88) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (35, 89) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 35]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (36, 90) RETURNING "id"
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (36, 91) RETURNING "id"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (36, 92) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.7ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 36]]
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 91 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:11:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (37, 93) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (37, 94) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (37, 95) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 37]]
+  [1m[35mMedicine Load (0.3ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 93 LIMIT 1
+  [1m[36mMedicine Load (0.2ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 95 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[35m (0.3ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (38, 96) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (38, 97) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (38, 98) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.2ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 38]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (39, 99) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (39, 100) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (39, 101) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 39]]
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 100 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:12:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:12:28 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:12:28 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:12:28 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:12:28 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (40, 102) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (40, 103) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (40, 104) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.9ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 40]]
+  [1m[35mMedicine Load (0.5ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 104 LIMIT 1
+  [1m[36mMedicine Load (0.9ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 102 LIMIT 1[0m
+  [1m[35mMedicine Load (0.5ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 104 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.8ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (41, 105) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (41, 106) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (41, 107) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 41]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (42, 108) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (42, 109) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (42, 110) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 42]]
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 109 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:18:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (43, 111) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (43, 112) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (43, 113) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.9ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 43]]
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.2ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (44, 114) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (44, 115) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (44, 116) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 44]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (45, 117) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (45, 118) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (45, 119) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 45]]
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 118 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:21:06 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (46, 120) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (46, 121) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (46, 122) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (1.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 46]]
+  [1m[35m (0.8ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.4ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (47, 123) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (47, 124) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (47, 125) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 47]]
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (48, 126) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (48, 127) RETURNING "id"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (48, 128) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (1.3ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 48]]
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 127 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:22:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (49, 129) RETURNING "id"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (49, 130) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (49, 131) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.2ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (50, 132) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (50, 133) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (50, 134) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 50]]
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (51, 135) RETURNING "id"
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (51, 136) RETURNING "id"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (51, 137) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (1.1ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 51]]
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 136 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:22:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (52, 138) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (52, 139) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (52, 140) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 52]]
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (3.9ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (53, 141) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (53, 142) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (53, 143) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 53]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (54, 144) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (54, 145) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (54, 146) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.7ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 54]]
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 145 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:23:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (55, 147) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (55, 148) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (55, 149) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 55]]
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.2ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (56, 150) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (56, 151) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (56, 152) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 56]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (57, 153) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (57, 154) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (57, 155) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 57]]
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 154 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:24:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (58, 156) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (58, 157) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (58, 158) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 58]]
+  [1m[35mMedicine Load (0.8ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 0 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (3.9ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (59, 159) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (59, 160) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (59, 161) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 59]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:03 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (60, 162) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (60, 163) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (60, 164) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 60]]
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 163 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00]]
+  [1m[35m (0.3ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:25:04 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (61, 165) RETURNING "id"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (61, 166) RETURNING "id"
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (61, 167) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 61]]
+  [1m[35mMedicine Load (0.5ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 0 LIMIT 1
+  [1m[36mMedicine Load (0.7ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 165 LIMIT 1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 0 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.6ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "C"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "D"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (62, 168) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (62, 169) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (62, 170) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 62]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (63, 171) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (63, 172) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (63, 173) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mMedicine Load (0.6ms)[0m  SELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1  [["session_id", 63]]
+  [1m[36mMedicine Load (0.5ms)[0m  [1mSELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 172 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "medicines" ("brand", "created_at", "drug_name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["brand", "Doe"], ["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["drug_name", "Alfonso Bellarus"], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sessions" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00], ["updated_at", Tue, 12 Aug 2014 22:25:31 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (64, 174) RETURNING "id"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (64, 175) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "medicines_sessions" ("session_id", "medicine_id") VALUES (64, 176) RETURNING "id"[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 64]]
+  [1m[35mMedicine Load (0.3ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 174 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
