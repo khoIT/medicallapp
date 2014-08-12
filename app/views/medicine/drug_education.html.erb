@@ -4,7 +4,11 @@
     <%= link_to "Back", action: "drug_indication", session: params[:session] %>
   </button>
   <button class="btn btn-link btn-nav pull-right">
-    <%= link_to "Next Drug", action: "drug_indication", session: params[:session], id: @next_drug.id %>
+    <% if !@next_drug.nil? then %>
+      <%= link_to "Next Drug", action: "drug_indication", session: params[:session], id: @next_drug.id %>
+    <% else %>
+      <%= link_to "Medicine List", drug_list_path %>
+    <% end %>
     <span class="icon icon-right-nav"></span>
   </button>
 
@@ -34,6 +38,11 @@
         </div>
       </li>
       <% end %>
+    <% if !@next_drug.nil? then %>
+      <button id="start_time" type="submit" class="btn btn-block">Start timing the education time</button>
+    <% else %>
+      <button id="stop_time" type="submit" class="btn btn-block">Stop timing the education time</button>
+    <% end %>
     </ul>
   </div>
 <nav class="bar bar-tab">
@@ -50,3 +59,16 @@
     <span class="tab-label">Search</span>
   </a>
 </nav>
+
+<script>
+  $("#start_time").click(function(event){
+    alert("Great! Time recorded!");
+    var session_id = "<%=params[:session]%>";
+    $.get("/session/" + session_id + "/start_time");
+  });
+  $("#stop_time").click(function(event){
+    alert("Great! Stop session!");
+    var session_id = "<%=params[:session]%>";
+    $.get("/session/" + session_id + "/stop_time");
+  });
+</script>

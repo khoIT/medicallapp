@@ -1,4 +1,5 @@
 class Session < ActiveRecord::Base
+  attr_accessible :start_time, :stop_time
   has_and_belongs_to_many :medicines
 
   def next_drug(drug)

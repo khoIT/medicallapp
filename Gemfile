@@ -53,7 +53,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-
+gem 'devise'
 gem 'autoprefixer-rails'
 gem 'ratchet-rails', '~> 0.0.3'
 gem 'ratchet-sass', '~> 2.0.2'

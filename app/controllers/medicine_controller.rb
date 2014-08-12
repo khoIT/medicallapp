@@ -13,9 +13,6 @@ class MedicineController < ApplicationController
     @session = Session.find_by_id(params[:session])
     @drug = Medicine.find_by_id(params[:id])
     @next_drug = @session.next_drug(@drug)
-    if @next_drug.nil?
-      redirect_to drug_list_path, notice: "Session completed!"
-    end
 
     @education = @drug.education.all
     @other_education = @drug.other_education.all
@@ -29,7 +26,7 @@ class MedicineController < ApplicationController
 
   def import
     unless params[:file]
-      redirect_to show_import_url
+      redirect_to show_import_url, notice: "Please select file"
       return
     end
     Medicine.import(params[:file])

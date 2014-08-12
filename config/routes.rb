@@ -1,4 +1,6 @@
 Medicallapp::Application.routes.draw do
+  devise_for :models
+  devise_for :users
   mount Surveyor::Engine => "/surveys", :as => "surveyor"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -13,6 +15,8 @@ Medicallapp::Application.routes.draw do
   post 'medicine/:id/final_indication' => 'medicine#drug_final_indication', as: 'show_final_indication'
   post 'session/new' => 'session#new', as: 'new_session'
   get 'session/:id' => 'session#show', as: 'show_session'
+  get 'session/:session/start_time' => 'session#start_time', as: 'start_time'
+  get 'session/:session/stop_time' => 'session#stop_time', as: 'stop_time'
 
 
 

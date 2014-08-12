@@ -3,16 +3,11 @@
     <span class="icon icon-left-nav"></span>
     <%= link_to "Back", :controller => "physician", :action => "index" %>
   </button>
-           <% if notice %>
-       <script language="JavaScript">
-         alert("<%= notice %>");
-        </script>
-      <% end %>
   <h1 class="title">Title</h1>
 </header>
 <div class="content">
 <ul class="table-view">
-  <form action="/session/new" method="post">
+  <form id="session" action="/session/new" method="post">
     <input id="submit" type="submit" value="Start a Session!">
     <% for m in Medicine.all %>
     <li onclick="click_drug(this, id);" class="table-view-cell active">
@@ -39,9 +34,28 @@
   </a>
 </nav>
 <script>
+  $(function() {
+    $('#session').data('serialize',$('#session').serialize());
+  });
+
   function click_drug(el, id){
    inp = $(el).find("input");
    inp.prop("checked", !inp.prop("checked"));
   };
+
+  function formchanged(){
+    form_clean = $('#session').serialize()
+    if($('#session').serialize()!=$('#session').data('serialize')){
+        // Form has changed!!!
+        return (true);
+        }
+        return (false);
+  }
+  $('#session').submit(function(event){
+    if (formchanged()==false ) {
+        event.preventDefault();
+        alert("Please choose a drug");
+    }
+  });
 
 </script>
