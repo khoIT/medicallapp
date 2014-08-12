@@ -213,7 +213,6 @@ DEPENDENCIES
   debugger
   devise
   factory_girl_rails (~> 4.0)
-  formtastic
   iconv (~> 1.0.4)
   jbuilder (~> 1.2)
   jquery-rails
