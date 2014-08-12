@@ -1,0 +1,5 @@
+.khoi-alert{
+ position: absolute;
+ z-index: 11;
+ width: 100%;
+}
