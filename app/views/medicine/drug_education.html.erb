@@ -7,7 +7,7 @@
     <% if !@next_drug.nil? then %>
       <%= link_to "Next Drug", action: "drug_indication", session: params[:session], id: @next_drug.id %>
     <% else %>
-      <%= link_to "Medicine List", drug_list_path %>
+      <%= link_to "Medicine List", surveyor.available_surveys_path %>
     <% end %>
     <span class="icon icon-right-nav"></span>
   </button>
