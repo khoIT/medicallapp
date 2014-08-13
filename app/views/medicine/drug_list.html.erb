@@ -7,7 +7,7 @@
 </header>
 <div class="content">
 <ul class="table-view">
-  <form id="session" action="/session/new" method="post">
+  <form id="session" action="/medicalsession/new" method="post">
     <input id="submit" type="submit" value="Start a Session!">
     <% for m in Medicine.all %>
     <li onclick="click_drug(this, id);" class="table-view-cell active">

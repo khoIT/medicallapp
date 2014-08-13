@@ -3,14 +3,14 @@ class MedicineController < ApplicationController
   end
 
   def drug_indication
-    @session = Session.find_by_id(params[:session])
+    @session = MedicalSession.find_by_id(params[:session])
     @drug = Medicine.find_by_id(params[:id])
     @indication = @drug.indication.all
   end
 
   def drug_education
     FinalIndication.choose(params)
-    @session = Session.find_by_id(params[:session])
+    @session = MedicalSession.find_by_id(params[:session])
     @drug = Medicine.find_by_id(params[:id])
     @next_drug = @session.next_drug(@drug)
 

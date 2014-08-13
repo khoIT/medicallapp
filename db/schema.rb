@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812215919) do
+ActiveRecord::Schema.define(version: 20140812041646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,16 +89,21 @@ ActiveRecord::Schema.define(version: 20140812215919) do
     t.datetime "updated_at"
   end
 
+  create_table "medical_sessions", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "stop_time"
+  end
+
+  create_table "medical_sessions_sessions", force: true do |t|
+    t.integer "medicine_id"
+    t.integer "medical_session_id"
+  end
+
   create_table "medicines", force: true do |t|
     t.string   "drug_name"
     t.string   "brand"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "medicines_sessions", force: true do |t|
-    t.integer "medicine_id"
-    t.integer "session_id"
   end
 
   create_table "other_educations", force: true do |t|
@@ -193,8 +198,6 @@ ActiveRecord::Schema.define(version: 20140812215919) do
   create_table "sessions", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "start_time"
-    t.datetime "stop_time"
   end
 
   create_table "survey_sections", force: true do |t|

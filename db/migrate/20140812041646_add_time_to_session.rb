@@ -1,10 +1,14 @@
 class AddTimeToSession < ActiveRecord::Migration
-  def self.up
-    add_column :sessions, :start_time, :datetime
-    add_column :sessions, :stop_time, :datetime
-  end
-  def self.down
-    remove_column :sessions, :start_time, :datetime
-    remove_column :sessions, :stop_time, :datetime
+  def change
+    create_table :medical_sessions do |t|
+      t.datetime :start_time
+      t.datetime :stop_time
+    end
+
+    create_table :medical_sessions_sessions do |t|
+       t.integer :medicine_id
+       t.integer :medical_session_id
+    end
+    drop_table :medicines_sessions
   end
 end
