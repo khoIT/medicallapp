@@ -1,0 +1,24 @@
+<html>
+  <ul class="nav nav-tabs col-md-offset-1" role="tablist">
+    <li>
+    <a> <span class="glyphicon glyphicon-home"></span></a>
+    </li>
+    <li>
+      <a href="#">Home</a>
+    </li>
+    <li>
+      <a href="/medicine">Medicine List</a>
+    </li>
+    <li class="dropdown">
+      <a href="/show_import">Import drugs</a>
+    </li>
+    <li>
+      <% if user_signed_in? %>
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      <% else %>
+      <%= link_to('Login', new_user_session_path)  %>
+      <% end %>
+    </li>
+  </ul>
+  <%= render 'layouts/navigation' %>
+</html>

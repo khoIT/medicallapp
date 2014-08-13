@@ -7,7 +7,7 @@
     <% if !@next_drug.nil? then %>
       <%= link_to "Next Drug", action: "drug_indication", session: params[:session], id: @next_drug.id %>
     <% else %>
-      <%= link_to "Medicine List", surveyor.available_surveys_path %>
+      <%= link_to "Medicine List", drug_list_path %>
     <% end %>
     <span class="icon icon-right-nav"></span>
   </button>
@@ -45,21 +45,7 @@
     <% end %>
     </ul>
   </div>
-<nav class="bar bar-tab">
-  <a class="tab-item active" href="/home">
-    <span class="glyphicon glyphicon-home"></span>
-    <span class="tab-label">Home</span>
-  </a>
-  <a class="tab-item" href="/medicine">
-    <span class="glyphicon glyphicon-list"></span>
-    <span class="tab-label">Medicine List</span>
-  </a>
-  <a class="tab-item" href="#">
-    <span class="icon icon-search"></span>
-    <span class="tab-label">Search</span>
-  </a>
-</nav>
-
+  <%= render partial: "layouts/navigation" %>
 <script>
   $("#stop_time").click(function(event){
     alert("Great! Stop session!");
