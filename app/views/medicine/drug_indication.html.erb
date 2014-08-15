@@ -5,7 +5,7 @@
     <%= link_to "Back", action: "drug_list" %>
   </button>
   <button class="btn btn-link btn-nav pull-right">
-    <%= link_to "Education", action: "drug_education", session: params[:session] %>
+    <%= link_to "Education", action: "drug_education", medical_session: params[:medical_session] %>
     <span class="icon icon-right-nav"></span>
   </button>
   <h1 class="title"><%= @drug.drug_name %></h1>
@@ -31,7 +31,7 @@
 <script>
   $("#start_time").click(function(event){
     alert("Great! Time recorded!");
-    var session_id = "<%=params[:session]%>";
+    var session_id = "<%=params[:medical_session]%>";
     $.get("/session/" + session_id + "/start_time");
   });
 </script>

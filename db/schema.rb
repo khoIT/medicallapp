@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140812041646) do
     t.datetime "stop_time"
   end
 
-  create_table "medical_sessions_sessions", force: true do |t|
+  create_table "medical_sessions_medicines", force: true do |t|
     t.integer "medicine_id"
     t.integer "medical_session_id"
   end

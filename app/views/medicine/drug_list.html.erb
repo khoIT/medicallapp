@@ -7,15 +7,15 @@
 </header>
 <div class="content">
 <ul class="table-view">
-  <form id="session" action="/medicalsession/new" method="post">
+  <%= form_tag new_session_path, id: "session", method:"post" do %>
     <input id="submit" type="submit" value="Start a Session!">
     <% for m in Medicine.all %>
     <li onclick="click_drug(this, id);" class="table-view-cell active">
         <%= m.drug_name%>
-      <%= check_box_tag(m.id,m.id) %>
+        <%= check_box_tag("medicine[#{m.id}]") %>
       </li>
     <% end %>
-  </form>
+  <% end %>
 </ul>
 </div>
   <%= render partial: "layouts/navigation" %>

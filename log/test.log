@@ -991,3 +991,372 @@ Migrating to AddColumnStartAndStopTimeToMedicinesSessions (20140812215919)
   [1m[36mMedicine Load (0.4ms)[0m  [1mSELECT "medicines".* FROM "medicines" INNER JOIN "medicines_sessions" ON "medicines"."id" = "medicines_sessions"."medicine_id" WHERE "medicines_sessions"."session_id" = $1[0m  [["session_id", 64]]
   [1m[35mMedicine Load (0.3ms)[0m  SELECT "medicines".* FROM "medicines" WHERE "medicines"."id" = 174 LIMIT 1
   [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36m (4.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMedicines (20140731011233)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (5.5ms)[0m  [1mCREATE TABLE "medicines" ("id" serial primary key, "drug_name" character varying(255), "brand" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140731011233"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePhysicians (20140731011827)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (5.0ms)[0m  [1mCREATE TABLE "physicians" ("id" serial primary key, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140731011827"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIndications (20140801045545)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (6.6ms)[0m  [1mCREATE TABLE "indications" ("id" serial primary key, "content" text, "medicine_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140801045545"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateEducations (20140801045550)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.9ms)[0m  [1mCREATE TABLE "educations" ("id" serial primary key, "content" text, "medicine_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140801045550"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFinalIndications (20140803001040)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (6.7ms)[0m  [1mCREATE TABLE "final_indications" ("id" serial primary key, "content" text, "medicine_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140803001040"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateOtherEducations (20140805002618)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (5.2ms)[0m  [1mCREATE TABLE "other_educations" ("id" serial primary key, "content" text, "medicine_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140805002618"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSessions (20140807030603)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.3ms)[0m  [1mCREATE TABLE "sessions" ("id" serial primary key, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140807030603"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddMedicinesSession (20140807034145)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "medicines_sessions" ("id" serial primary key, "medicine_id" integer, "session_id" integer) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140807034145"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSurveys (20140809002523)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (5.2ms)[0m  [1mCREATE TABLE "surveys" ("id" serial primary key, "title" character varying(255), "description" text, "access_code" character varying(255), "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "active_at" timestamp, "inactive_at" timestamp, "css_url" character varying(255), "custom_class" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002523"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSurveySections (20140809002524)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.5ms)[0m  [1mCREATE TABLE "survey_sections" ("id" serial primary key, "survey_id" integer, "title" character varying(255), "description" text, "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_order" integer, "custom_class" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002524"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateQuestions (20140809002525)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (5.4ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "survey_section_id" integer, "question_group_id" integer, "text" text, "short_text" text, "help_text" text, "pick" character varying(255), "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_order" integer, "display_type" character varying(255), "is_mandatory" boolean, "display_width" integer, "custom_class" character varying(255), "custom_renderer" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002525"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateQuestionGroups (20140809002526)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (10.5ms)[0m  [1mCREATE TABLE "question_groups" ("id" serial primary key, "text" text, "help_text" text, "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_type" character varying(255), "custom_class" character varying(255), "custom_renderer" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002526"]]
+  [1m[36m (2.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAnswers (20140809002527)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.9ms)[0m  [1mCREATE TABLE "answers" ("id" serial primary key, "question_id" integer, "text" text, "short_text" text, "help_text" text, "weight" integer, "response_class" character varying(255), "reference_identifier" character varying(255), "data_export_identifier" character varying(255), "common_namespace" character varying(255), "common_identifier" character varying(255), "display_order" integer, "is_exclusive" boolean, "hide_label" boolean, "display_length" integer, "custom_class" character varying(255), "custom_renderer" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002527"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateResponseSets (20140809002528)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "response_sets" ("id" serial primary key, "user_id" integer, "survey_id" integer, "access_code" character varying(255), "started_at" timestamp, "completed_at" timestamp, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002528"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateResponses (20140809002529)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (5.5ms)[0m  [1mCREATE TABLE "responses" ("id" serial primary key, "response_set_id" integer, "question_id" integer, "answer_id" integer, "datetime_value" timestamp, "integer_value" integer, "float_value" float, "unit" character varying(255), "text_value" text, "string_value" character varying(255), "response_other" character varying(255), "response_group" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002529"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDependencies (20140809002530)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "dependencies" ("id" serial primary key, "question_id" integer, "question_group_id" integer, "rule" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002530"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDependencyConditions (20140809002531)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (6.5ms)[0m  [1mCREATE TABLE "dependency_conditions" ("id" serial primary key, "dependency_id" integer, "rule_key" character varying(255), "question_id" integer, "operator" character varying(255), "answer_id" integer, "datetime_value" timestamp, "integer_value" integer, "float_value" float, "unit" character varying(255), "text_value" text, "string_value" character varying(255), "response_other" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002531"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateValidations (20140809002532)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.5ms)[0m  [1mCREATE TABLE "validations" ("id" serial primary key, "answer_id" integer, "rule" character varying(255), "message" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002532"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateValidationConditions (20140809002533)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.9ms)[0m  [1mCREATE TABLE "validation_conditions" ("id" serial primary key, "validation_id" integer, "rule_key" character varying(255), "operator" character varying(255), "question_id" integer, "answer_id" integer, "datetime_value" timestamp, "integer_value" integer, "float_value" float, "unit" character varying(255), "text_value" text, "string_value" character varying(255), "response_other" character varying(255), "regexp" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002533"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddDisplayOrderToSurveys (20140809002534)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "surveys" ADD COLUMN "display_order" integer[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002534"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddCorrectAnswerIdToQuestions (20140809002535)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "questions" ADD COLUMN "correct_answer_id" integer[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002535"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddIndexToResponseSets (20140809002536)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mCREATE INDEX "response_sets_ac_idx" ON "response_sets" ("access_code")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002536"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddIndexToSurveys (20140809002537)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.1ms)[0m  [1mCREATE INDEX "surveys_ac_idx" ON "surveys" ("access_code")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002537"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddUniqueIndicies (20140809002538)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mDROP INDEX "response_sets_ac_idx"[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "response_sets_ac_idx" ON "response_sets" ("access_code")
+  [1m[36m (0.3ms)[0m  [1mDROP INDEX "surveys_ac_idx"[0m
+  [1m[35m (0.7ms)[0m  CREATE UNIQUE INDEX "surveys_ac_idx" ON "surveys" ("access_code")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002538"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+Migrating to AddSectionIdToResponses (20140809002539)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "responses" ADD COLUMN "survey_section_id" integer
+  [1m[36m (1.2ms)[0m  [1mCREATE INDEX "index_responses_on_survey_section_id" ON "responses" ("survey_section_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002539"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddDefaultValueToAnswers (20140809002540)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "default_value" character varying(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002540"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddApiIds (20140809002541)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "surveys" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "questions" ADD COLUMN "api_id" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002541"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddDisplayTypeToAnswers (20140809002542)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "display_type" character varying(255)[0m
+  [1m[35mAnswer Load (0.7ms)[0m  SELECT "answers".* FROM "answers"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "answers" DROP "hide_label"[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002542"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddApiIdToQuestionGroups (20140809002543)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "question_groups" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002543"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddApiIdsToResponseSetsAndResponses (20140809002544)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.2ms)[0m  [1mALTER TABLE "response_sets" ADD COLUMN "api_id" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "responses" ADD COLUMN "api_id" character varying(255)
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002544"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Migrating to UpdateBlankApiIdsOnQuestionGroup (20140809002545)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSurvey Load (0.7ms)[0m  SELECT "surveys".* FROM "surveys" WHERE (api_id IS NULL)
+  [1m[36mQuestion Load (0.6ms)[0m  [1mSELECT "questions".* FROM "questions" WHERE (api_id IS NULL)[0m
+  [1m[35mQuestionGroup Load (0.5ms)[0m  SELECT "question_groups".* FROM "question_groups" WHERE (api_id IS NULL)
+  [1m[36mAnswer Load (1.2ms)[0m  [1mSELECT "answers".* FROM "answers" WHERE (api_id IS NULL)[0m
+  [1m[35mResponse Load (1.1ms)[0m  SELECT "responses".* FROM "responses" WHERE (api_id IS NULL)
+  [1m[36mResponseSet Load (0.9ms)[0m  [1mSELECT "response_sets".* FROM "response_sets" WHERE (api_id IS NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002545"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to DropUniqueIndexOnAccessCodeInSurveys (20140809002546)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mDROP INDEX "surveys_ac_idx"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002546"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddVersionToSurveys (20140809002547)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (4.7ms)[0m  [1mALTER TABLE "surveys" ADD COLUMN "survey_version" integer DEFAULT 0[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002547"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddUniqueIndexOnAccessCodeAndVersionInSurveys (20140809002548)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "surveys_access_code_version_idx" ON "surveys" ("access_code", "survey_version")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002548"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to UpdateBlankVersionsOnSurveys (20140809002549)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSurvey Load (0.5ms)[0m  [1mSELECT "surveys".* FROM "surveys" WHERE (survey_version IS NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002549"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to ApiIdsMustBeUnique (20140809002550)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "uq_surveys_api_id" ON "surveys" ("api_id")[0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "uq_questions_api_id" ON "questions" ("api_id")
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "uq_question_groups_api_id" ON "question_groups" ("api_id")[0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "uq_answers_api_id" ON "answers" ("api_id")
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "uq_responses_api_id" ON "responses" ("api_id")[0m
+  [1m[35m (0.7ms)[0m  CREATE UNIQUE INDEX "uq_response_sets_api_id" ON "response_sets" ("api_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002550"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Migrating to CreateSurveyTranslations (20140809002551)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (4.0ms)[0m  CREATE TABLE "survey_translations" ("id" serial primary key, "survey_id" integer, "locale" character varying(255), "translation" text, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140809002551"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Migrating to AddInputMaskAttributesToAnswer (20140809002552)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "answers" ADD COLUMN "input_mask" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "answers" ADD COLUMN "input_mask_placeholder" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809002552"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateUsers (20140811061655)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (6.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "activation_code" character varying(255), "user_department" character varying(255), "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140811061655"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddTimeToSession (20140812041646)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "medical_sessions" ("id" serial primary key, "start_time" timestamp, "stop_time" timestamp) [0m
+  [1m[35m (4.4ms)[0m  CREATE TABLE "medical_sessions_sessions" ("id" serial primary key, "medicine_id" integer, "medical_session_id" integer) 
+  [1m[36m (1.5ms)[0m  [1mDROP TABLE "medicines_sessions"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140812041646"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+Processing by MedicineController#drug_list as HTML
+Completed 500 Internal Server Error in 24104ms
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+Processing by MedicineController#drug_list as HTML
+Completed 500 Internal Server Error in 909ms
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.5ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (5.1ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (22.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:14:15 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$ZVH6c3hWB9qGCMpbFkLKe.6szfazonEZ37O2zZ0yn0TeZm4fPLi32"], ["updated_at", Fri, 15 Aug 2014 21:14:15 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by MedicineController#drug_list as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered medicine/drug_list.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 18ms (Views: 9.9ms | ActiveRecord: 1.1ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Fri, 15 Aug 2014 21:14:15 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$gquc5gv2BeukCMyc0I8fceYaXDQqYOVtavQsI2.1.sD5unuQkKuNK"], ["updated_at", Fri, 15 Aug 2014 21:14:15 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by MedicineController#drug_list as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (7.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:15:09 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$32bbwukWR28stwtv1.gF6eG3DhTNS/3c7/HtKHTuyGr..WaZFzdcm"], ["updated_at", Fri, 15 Aug 2014 21:15:09 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:15:09 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$Pq6ybV.AA4HYndAUZtayseJ4VU.8SyZLSR3yKO5obua9ZNmVRYCr6"], ["updated_at", Fri, 15 Aug 2014 21:15:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (7.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:16:23 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$knejKHtY782DLcw6GRN6Tu0ppUsZ2IBHmm0NBqGEnZTQaB6XWL3Uu"], ["updated_at", Fri, 15 Aug 2014 21:16:23 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by MedicalsessionController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 ORDER BY "users"."id" ASC LIMIT 1[0m
+Redirected to http://test.host/medicine
+Completed 302 Found in 15269ms (ActiveRecord: 0.9ms)
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (7.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:16:44 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$7W.Z1hRGmDJk7/R78Svtzu381sHS.y.vMD5kPJpYoU/z1PYzh0W8G"], ["updated_at", Fri, 15 Aug 2014 21:16:44 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by MedicalsessionController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 6 ORDER BY "users"."id" ASC LIMIT 1[0m
+Redirected to http://test.host/medicine
+Completed 302 Found in 7ms (ActiveRecord: 1.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (7.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:17:21 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$gQd1c/or1Yd0mk0kKV6.7efzb3h.0TiVsCZ6eceuoB08TF7lZhf32"], ["updated_at", Fri, 15 Aug 2014 21:17:21 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by MedicineController#drug_list as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered medicine/drug_list.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 13ms (Views: 7.3ms | ActiveRecord: 1.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Fri, 15 Aug 2014 21:17:21 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$JKseCMBfsHiCFDyQTjpEyuwqYQiOQ.e7WTpWKSOncGR.6uYszvVYO"], ["updated_at", Fri, 15 Aug 2014 21:17:21 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by MedicineController#drug_list as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 8 ORDER BY "users"."id" ASC LIMIT 1
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:18:58 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$SYhK2cI7sFIDjyldBHdbhepB9k6u2BPlME6SB1F9uvFCIHyMY/s6S"], ["updated_at", Fri, 15 Aug 2014 21:18:58 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by MedicineController#drug_list as HTML
+Completed 401 Unauthorized in 6ms
+  Rendered text template (0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'test@exampl.ecom' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Fri, 15 Aug 2014 21:18:58 UTC +00:00], ["email", "test@exampl.ecom"], ["encrypted_password", "$2a$04$LVY8PC8uQQcrRXtmmRXnuOHGN7qFq0E6f1LH6ZAJpVW8DQ6Yyc.kS"], ["updated_at", Fri, 15 Aug 2014 21:18:58 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by MedicineController#drug_list as HTML
+Completed 401 Unauthorized in 0ms
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m

@@ -1,11 +1,11 @@
 <header class="bar bar-nav">
   <button class="btn btn-link btn-nav pull-left" href="medicine">
     <span class="icon icon-left-nav"></span>
-    <%= link_to "Back", action: "drug_indication", session: params[:session] %>
+    <%= link_to "Back", action: "drug_indication", medical_session: params[:medical_session] %>
   </button>
   <button class="btn btn-link btn-nav pull-right">
     <% if !@next_drug.nil? then %>
-      <%= link_to "Next Drug", action: "drug_indication", session: params[:session], id: @next_drug.id %>
+      <%= link_to "Next Drug", action: "drug_indication", medical_session: params[:medical_session], id: @next_drug.id %>
     <% else %>
       <%= link_to "Medicine List", drug_list_path %>
     <% end %>
