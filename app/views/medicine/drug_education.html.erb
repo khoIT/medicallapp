@@ -49,7 +49,7 @@
 <script>
   $("#stop_time").click(function(event){
     alert("Great! Stop session!");
-    var session_id = "<%=params[:session]%>";
-    $.get("/session/" + session_id + "/stop_time");
+    var session_id = "<%=params[:medical_session]%>";
+    $.get("/medicine/" + session_id + "/stop_time");
   });
 </script>

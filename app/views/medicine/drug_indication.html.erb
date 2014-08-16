@@ -32,6 +32,6 @@
   $("#start_time").click(function(event){
     alert("Great! Time recorded!");
     var session_id = "<%=params[:medical_session]%>";
-    $.get("/session/" + session_id + "/start_time");
+    $.get("/medicine/" + session_id + "/start_time");
   });
 </script>

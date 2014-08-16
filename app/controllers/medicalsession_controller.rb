@@ -12,12 +12,12 @@ class MedicalsessionController < ApplicationController
   end
 
   def start_time
-    session = MedicalSession.find_by_id(params[:session])
+    session = MedicalSession.find_by_id(params[:medical_session])
     session.update_attributes(start_time: Time.now)
   end
 
   def stop_time
-    session = MedicalSession.find_by_id(params[:session])
+    session = MedicalSession.find_by_id(params[:medical_session])
     session.update_attributes(stop_time: Time.now)
     render js: "window.location = #{drug_list_path.to_json}"
   end
