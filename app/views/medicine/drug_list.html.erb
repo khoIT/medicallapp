@@ -11,9 +11,9 @@
     <input id="submit" type="submit" value="Start a Session!">
     <% for m in Medicine.all %>
     <li onclick="click_drug(this, id);" class="table-view-cell active">
-        <%= m.drug_name%>
+        <%= m.drug_name %>
         <%= check_box_tag("medicine[#{m.id}]") %>
-      </li>
+    </li>
     <% end %>
   <% end %>
 </ul>
@@ -28,6 +28,10 @@
    inp = $(el).find("input");
    inp.prop("checked", !inp.prop("checked"));
   };
+
+  $('li input[type=checkbox]').on("click", function(){
+    $(this).prop("checked", !$(this).prop("checked"));
+  });
 
   function formchanged(){
     form_clean = $('#session').serialize()
