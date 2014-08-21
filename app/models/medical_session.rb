@@ -22,4 +22,11 @@ class MedicalSession < ActiveRecord::Base
     hash = Hash[drug_ids.map.with_index.to_a]
     drug == Medicine.find_by_id(hash.first[0])
   end
+
+  def started?
+    self.start_time?
+  end
+  def ended?
+    self.stop_time?
+  end
 end

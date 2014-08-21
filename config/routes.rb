@@ -8,14 +8,14 @@ Medicallapp::Application.routes.draw do
   root to: 'physician#index'
   get 'home' => 'physician#index'
   get 'medicine' => 'medicine#drug_list', as: 'drug_list'
-  get 'medicaasession/:medical_session/medicine/:id' => 'medicine#drug_indication'
-  get 'medicalsession/:medical_session/medicine/:id/education' => 'medicine#drug_education'
+  get 'session/:medical_session/medicine/:id' => 'medicine#drug_indication'
+  get 'session/:medical_session/medicine/:id/education' => 'medicine#drug_education'
+  post 'session/new' => 'medicalsession#new', as: 'new_session'
+  get 'session/:medical_session/start_time' => 'medicalsession#start_time', as: 'start_time'
+  get 'session/:medical_session/stop_time' => 'medicalsession#stop_time', as: 'stop_time'
+
   post 'indication/:id' => 'indication#choose_indication'
   post 'medicine/:id/final_indication' => 'medicine#drug_final_indication', as: 'show_final_indication'
-  post 'medicalsession/new' => 'medicalsession#new', as: 'new_session'
-  get 'medicine/:medical_session/start_time' => 'medicalsession#start_time', as: 'start_time'
-  get 'medicine/:medical_session/stop_time' => 'medicalsession#stop_time', as: 'stop_time'
-
 
 
   get 'show_import' => 'physician#show_import'

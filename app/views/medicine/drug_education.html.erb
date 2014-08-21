@@ -12,11 +12,11 @@
     <span class="icon icon-right-nav"></span>
   </button>
 
-  <h1 class="title"><%= @drug.drug_name %></h1>
+  <h1 class="title">Generic Drug Name: <%= @drug.drug_name %></h1>
 </header>
 
 <div class="content">
-    <button class="btn btn-block"><%= @drug.brand %></button>
+    <button class="btn btn-block">Brand Drug Name: <%= @drug.brand %></button>
     <h5 align="middle" > Indications </h1>
     <ul class="table-view">
       <% for item in @indication %>
@@ -26,9 +26,6 @@
                <%= item.content%>
             </div> </li>
       <% end %>
-    <% if @session.first_element?(@drug) %>
-      <button id="start_time" type="submit" class="btn btn-block">Start timing the education time</button>
-    <% end %>
     </ul>
     <h5 align="middle" > Education points </h1>
     <ul class="table-view">
@@ -53,16 +50,26 @@
         </div>
       </li>
       <% end %>
-    <% if @next_drug.nil? then %>
+    <% if !@session.started? then %>
+      <button id="start_time" type="submit" class="btn btn-block">Start timing the education time</button>
+      <button id="stop_time" type="submit" class="btn btn-block hidden">Stop timing the education time</button>
+    <% elsif @session.started? && !@session.ended? %>
       <button id="stop_time" type="submit" class="btn btn-block">Stop timing the education time</button>
     <% end %>
     </ul>
   </div>
   <%= render partial: "layouts/navigation" %>
 <script>
+  $("#start_time").click(function(event){
+    alert("Great! Time recorded!");
+    var session_id = "<%=params[:medical_session]%>";
+    $.get("/session/" + session_id + "/start_time");
+    $("#start_time").hide();
+    $("#stop_time").removeClass('hidden')
+  });
   $("#stop_time").click(function(event){
     alert("Great! Stop session!");
     var session_id = "<%=params[:medical_session]%>";
-    $.get("/medicine/" + session_id + "/stop_time");
+    $.get("/session/" + session_id + "/stop_time");
   });
 </script>
