@@ -1,4 +1,6 @@
 class MedicineController < ApplicationController
+  include MedicineHelper
+
   def drug_list
   end
 
@@ -14,6 +16,7 @@ class MedicineController < ApplicationController
     @drug = Medicine.find_by_id(params[:id])
     @next_drug = @session.next_drug(@drug)
 
+    @indication = @drug.indication.all
     @education = @drug.education.all
     @other_education = @drug.other_education.all
   end
@@ -29,6 +32,7 @@ class MedicineController < ApplicationController
       redirect_to show_import_url, notice: "Please select file"
       return
     end
+    clear_database(Medicine)
     Medicine.import(params[:file])
     redirect_to drug_list_path, notice: "File imported"
   end

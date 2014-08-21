@@ -5,7 +5,7 @@
   </button>
   <button class="btn btn-link btn-nav pull-right">
     <% if !@next_drug.nil? then %>
-      <%= link_to "Next Drug", action: "drug_indication", medical_session: params[:medical_session], id: @next_drug.id %>
+      <%= link_to "Next Drug", action: "drug_education", medical_session: params[:medical_session], id: @next_drug.id %>
     <% else %>
       <%= link_to "Medicine List", drug_list_path %>
     <% end %>
@@ -17,6 +17,19 @@
 
 <div class="content">
     <button class="btn btn-block"><%= @drug.brand %></button>
+    <h5 align="middle" > Indications </h1>
+    <ul class="table-view">
+      <% for item in @indication %>
+          <li class="table-view-cell media">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+               <%= item.content%>
+            </div> </li>
+      <% end %>
+    <% if @session.first_element?(@drug) %>
+      <button id="start_time" type="submit" class="btn btn-block">Start timing the education time</button>
+    <% end %>
+    </ul>
     <h5 align="middle" > Education points </h1>
     <ul class="table-view">
       <% for item in @education %>

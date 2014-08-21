@@ -8,7 +8,7 @@ class MedicalsessionController < ApplicationController
     session.medicines  = Medicine.find(ids)
     session.save!
     @drug = session.medicines.first
-    redirect_to controller: 'medicine', action: 'drug_indication', medical_session: session.id, id: @drug.id
+    redirect_to controller: 'medicine', action: 'drug_education', medical_session: session.id, id: @drug.id
   end
 
   def start_time
