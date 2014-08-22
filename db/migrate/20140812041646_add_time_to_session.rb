@@ -5,7 +5,7 @@ class AddTimeToSession < ActiveRecord::Migration
       t.datetime :stop_time
     end
 
-    create_table :medical_sessions_medicines do |t|
+    create_table :medical_session_medicines do |t|
        t.integer :medicine_id
        t.integer :medical_session_id
     end

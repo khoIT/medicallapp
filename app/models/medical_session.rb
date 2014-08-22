@@ -1,6 +1,7 @@
 class MedicalSession < ActiveRecord::Base
   attr_accessible :start_time, :stop_time
-  has_and_belongs_to_many :medicines
+  has_many :medical_session_medicines, foreign_key: "medical_session_id"
+  has_many :medicines, through: :medical_session_medicines
 
   def next_drug(drug)
     drug_ids = Array.new

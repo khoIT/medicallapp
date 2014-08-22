@@ -6,8 +6,8 @@ class Medicine < ActiveRecord::Base
   has_many :indication
   has_many :final_indication
   has_many :other_education
-  has_many :medicines_session
-  has_and_belongs_to_many :sessions
+  has_many :medical_session_medicines, foreign_key: "medicine_id"
+  has_many :medical_sessions, through: :medical_session_medicines
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
