@@ -89,14 +89,14 @@ ActiveRecord::Schema.define(version: 20140822193401) do
     t.datetime "updated_at"
   end
 
-  create_table "medical_session_medicines", force: true do |t|
-    t.integer "medicine_id"
-    t.integer "medical_session_id"
-  end
-
   create_table "medical_sessions", force: true do |t|
     t.datetime "start_time"
     t.datetime "stop_time"
+  end
+
+  create_table "medical_sessions_medicines", force: true do |t|
+    t.integer "medicine_id"
+    t.integer "medical_session_id"
   end
 
   create_table "medicines", force: true do |t|

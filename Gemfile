@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-
 gem 'protected_attributes'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -64,4 +63,5 @@ gem 'iconv', '~> 1.0.4'
 gem 'simplecov', '~> 0.9.0', :require => false, :group => :test
 gem "factory_girl_rails", "~> 4.0"
 gem 'surveyor',:git => "git://github.com/NUBIC/surveyor.git"
-
+gem 'rails_admin', '~> 0.6.3'
+gem 'hirb', '~> 0.7.2'
